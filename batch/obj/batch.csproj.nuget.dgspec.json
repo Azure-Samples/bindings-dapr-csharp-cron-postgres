@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/nickgreenfield/workspace/dapr-to-aca-bindings-dotnet/batch/batch.csproj": {}
+  },
+  "projects": {
+    "/Users/nickgreenfield/workspace/dapr-to-aca-bindings-dotnet/batch/batch.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/nickgreenfield/workspace/dapr-to-aca-bindings-dotnet/batch/batch.csproj",
+        "projectName": "batch",
+        "projectPath": "/Users/nickgreenfield/workspace/dapr-to-aca-bindings-dotnet/batch/batch.csproj",
+        "packagesPath": "/Users/nickgreenfield/.nuget/packages/",
+        "outputPath": "/Users/nickgreenfield/workspace/dapr-to-aca-bindings-dotnet/batch/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/nickgreenfield/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Dapr.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
