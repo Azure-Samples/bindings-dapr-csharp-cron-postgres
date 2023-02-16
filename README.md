@@ -1,4 +1,4 @@
-# Dapr Bindings (Dapr SDK)
+# Event-driven work using bindings
 
 In this quickstart, you'll create a microservice to demonstrate Dapr's bindings API to work with external systems as inputs and outputs. The service listens to input binding events from a system CRON and then outputs the contents of local data to a PostreSql output binding. 
 
