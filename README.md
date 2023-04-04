@@ -93,12 +93,30 @@ Deploy to Azure for dev-test
 
 > NOTE: make sure you have Azure Dev CLI pre-reqs [here](https://github.com/Azure-Samples/todo-python-mongo-aca)
 
-1. Provision infra and deploy application:
+1. Open a terminal, create a new empty folder, and change into it.
+2. Run the following command to initialize the project. 
+
+```bash
+azd init --template https://github.com/Azure-Samples/bindings-dapr-csharp-cron-postgres
+``` 
+
+This command will clone the code to your current folder and prompt you for the following information:
+
+- `Environment Name`: This will be used as a prefix for the resource group that will be created to hold all Azure resources. This name should be unique within your Azure subscription.
+
+3. Run the following command to build a deployable copy of your application, provision the template's infrastructure to Azure and also deploy the applciation code to those newly provisioned resources.
+
 ```bash
 azd up
 ```
 
-2. Confirm the deployment is susccessful:
+This command will prompt you for the following information:
+- `Azure Location`: The Azure location where your resources will be deployed.
+- `Azure Subscription`: The Azure Subscription where your resources will be deployed.
+
+> NOTE: This may take a while to complete as it executes three commands: `azd package` (builds a deployable copy of your application),`azd provision` (provisions Azure resources), and `azd deploy` (deploys application code). You will see a progress indicator as it packages, provisions and deploys your application.
+
+4. Confirm the deployment is susccessful:
 
 Navigate to the Container App resource for the Batch service. Locate the `Log stream` and confirm the batch container is logging each insert successfully every 10s. 
 
