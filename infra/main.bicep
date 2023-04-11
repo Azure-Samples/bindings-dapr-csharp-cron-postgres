@@ -71,6 +71,8 @@ module appEnv './app/app-env.bicep' = {
     secretStoreName: secretStoreName
     principalId: security.outputs.managedIdentityClientlId
     vaultName: security.outputs.keyVaultName
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    daprEnabled: true
   }
 }
 
@@ -82,7 +84,6 @@ module api './app/api.bicep' = {
     name: !empty(apiContainerAppName) ? apiContainerAppName : '${abbrs.appContainerApps}${apiServiceName}-${resourceToken}'
     location: location
     imageName: apiImageName
-    applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: appEnv.outputs.environmentName
     containerRegistryName: appEnv.outputs.registryName
     serviceName: apiServiceName
@@ -93,7 +94,7 @@ module api './app/api.bicep' = {
 
 // The application database
 module postgresServer './core/database/postgres/sql/postgres-sql-db.bicep' = {
-  name:'pg' 
+  name:'pg'
   scope: rg
   params: {
     name: '${resourceToken}-pg-server'
