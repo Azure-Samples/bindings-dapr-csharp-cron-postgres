@@ -1,12 +1,11 @@
 param location string = resourceGroup().location
 param tags object = {}
 
-param applicationInsightsName string
 param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param name string = ''
-param keyVaultName string 
+param keyVaultName string
 param serviceName string = 'batch'
 param managedIdentityName string = ''
 
@@ -20,29 +19,16 @@ module app '../core/host/container-app.bicep' = {
     containerRegistryName: containerRegistryName
     containerCpuCoreCount: '1.0'
     containerMemory: '2.0Gi'
-    env: [
-      {
-        name: 'AZURE_KEY_VAULT_ENDPOINT'
-        value: keyVault.properties.vaultUri
-      }
-      {
-        name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: applicationInsights.properties.ConnectionString
-      }
-    ]
     imageName: !empty(imageName) ? imageName : 'nginx:latest'
     daprEnabled: true
     containerName: serviceName
     keyVaultName: keyVault.name
-    targetPort: 7002 
+    targetPort: 7002
     managedIdentityEnabled: true
     managedIdentityName: managedIdentityName
   }
 }
 
-resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing = {
-  name: applicationInsightsName
-}
 
 resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   name: keyVaultName

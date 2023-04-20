@@ -11,9 +11,6 @@
       "imageName": {
         "value": "${SERVICE_API_IMAGE_NAME}"
       },
-      "applicationInsightsName": {
-        "value": "${APPLICATIONINSIGHTS_NAME}"
-      },
       "containerAppsEnvironmentName": {
         "value": "${AZURE_CONTAINER_ENVIRONMENT_NAME}"
       },
@@ -29,4 +26,3 @@
     }
   }
 
-  
