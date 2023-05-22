@@ -91,7 +91,7 @@ docker compose stop
 # Deploy to Azure (Azure Container Apps and Azure Postgres)
 Deploy to Azure for dev-test
 
-> NOTE: make sure you have Azure Dev CLI pre-reqs [here](https://github.com/Azure-Samples/todo-python-mongo-aca)
+NOTE: make sure you have Azure Dev CLI pre-reqs [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd?tabs=winget-windows%2Cbrew-mac%2Cscript-linux&pivots=os-windows) and are on version 0.9.0-beta.3 or greater.
 
 1. Run the following command to initialize the project. 
 
