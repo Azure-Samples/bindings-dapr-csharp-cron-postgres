@@ -1,10 +1,10 @@
 name: bindings-dapr-csharp-postgres-aca
 metadata:
-  template: bindings-dapr-sharp-postgres-aca@0.0.1-beta
+  template: bindings-dapr-csharp-postgres-aca@0.0.1-beta
 services:
   api:
     project: batch
-    language: js
+    language: csharp
     host: containerapp
     module: app/api
  
