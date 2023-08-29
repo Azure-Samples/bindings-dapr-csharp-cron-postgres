@@ -10,12 +10,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-using System;
-using System.IO;
-using System.Text;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Mvc;
 using Dapr.Client;
 
 
@@ -45,7 +42,7 @@ app.MapPost("/" + cronBindingName, async () => {
 
         await client.InvokeBindingAsync(bindingName: sqlBindingName, operation: "exec", data: "", metadata: tableCommand);
 
-        var sqlText = $"insert into orders (orderid, customer, price) values ({ord.OrderId}, '{ord.Customer}', {ord.Price});";
+        var sqlText = $"insert into orders (orderid, customer, price) values ({ord.OrderId}, '{ord.Customer}', {ord.Price.ToString(CultureInfo.InvariantCulture)});";
         var command = new Dictionary<string,string>(){
             {"sql",
             sqlText}
