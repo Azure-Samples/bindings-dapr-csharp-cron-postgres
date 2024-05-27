@@ -23,7 +23,7 @@ module containerApps '../core/host/container-apps.bicep' = {
 }
 
 // Get App Env resource instance to parent Dapr component config under it
-resource caEnvironment  'Microsoft.App/managedEnvironments@2022-10-01' existing = {
+resource caEnvironment 'Microsoft.App/managedEnvironments@2022-10-01' existing = {
   name: containerAppsEnvName
 }
 
@@ -61,10 +61,10 @@ resource daprComponentPostgresBinding 'Microsoft.App/managedEnvironments/daprCom
     ignoreErrors: false
     metadata: [
       {
-         name: 'url'
-         secretRef: 'pg-connection-string'
-       }
-     ]
+        name: 'url'
+        secretRef: 'pg-connection-string'
+      }
+    ]
     secretStoreComponent: secretStoreName
     scopes: ['batch']
   }
