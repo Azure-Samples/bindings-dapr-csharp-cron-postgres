@@ -22,17 +22,16 @@ module app '../core/host/container-app.bicep' = {
     imageName: !empty(imageName) ? imageName : 'nginx:latest'
     daprEnabled: true
     containerName: serviceName
-    keyVaultName: keyVault.name
     targetPort: 7002
-    managedIdentityEnabled: true
-    managedIdentityName: managedIdentityName
+    identityType: 'SystemAssigned'
+    identityName: managedIdentityName
   }
 }
 
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
-  name: keyVaultName
-}
+// resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+//   name: keyVaultName
+// }
 
 output SERVICE_API_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrincipalId
 output SERVICE_API_NAME string = app.outputs.name
