@@ -26,6 +26,21 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
     administratorLoginPassword: sqlAdminPassword
   }
 
+  resource auditingSettings 'auditingSettings' = {
+    name: 'default'
+    properties: {
+      state: 'Enabled'
+      isAzureMonitorTargetEnabled: true
+    }
+  }
+
+  resource MsDefender 'advancedThreatProtectionSettings' = {
+    name: 'default'
+    properties: {
+      state: 'Enabled'
+    }
+  }
+
   resource database 'databases' = {
     name: databaseName
     location: location
