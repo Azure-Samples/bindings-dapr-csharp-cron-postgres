@@ -1,4 +1,4 @@
-![image](https://github.com/v-xuto/bindings-dapr-csharp-cron-postgres/assets/57166602/410ae3d2-64c5-4751-a02f-500e555e6129)---
+---
 page_type: sample
 languages:
 - azdeveloper
