@@ -1,6 +1,10 @@
 metadata description = 'Creates an Azure Container Apps environment.'
 param name string
 param location string = resourceGroup().location
+param vnetInternal bool = true
+@description('Name of the Vnet')
+param vnetName string
+
 param tags object = {}
 
 @description('Name of the Application Insights resource')
@@ -25,7 +29,15 @@ resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01'
       }
     }
     daprAIInstrumentationKey: daprEnabled && !empty(applicationInsightsName) ? applicationInsights.properties.InstrumentationKey : ''
+    vnetConfiguration: {
+      infrastructureSubnetId: vnet.properties.subnets[0].id
+      internal: vnetInternal
+    }
   }
+}
+
+resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
+  name: vnetName
 }
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' existing = {

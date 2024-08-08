@@ -7,6 +7,8 @@ param logAnalyticsWorkspaceName string
 param principalId string
 param applicationInsightsName string
 param daprEnabled bool
+param vnetInernal bool
+param vnetName string
 
 // Container apps host (including container registry)
 module containerApps '../core/host/container-apps.bicep' = {
@@ -19,6 +21,8 @@ module containerApps '../core/host/container-apps.bicep' = {
     logAnalyticsWorkspaceName: logAnalyticsWorkspaceName
     applicationInsightsName: applicationInsightsName
     daprEnabled: daprEnabled
+    vnetName: vnetName
+    vnetInternal: vnetInernal
   }
 }
 

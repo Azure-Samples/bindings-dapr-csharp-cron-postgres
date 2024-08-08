@@ -38,6 +38,9 @@ param apiImageName string = ''
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName }
+param vnetName string = 'vnet-ca'
+param vnetInternal bool = true
+param vnetPrefix string = '10.0.0.0/16'
 
 // Organize resources in a resource group
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
@@ -73,6 +76,31 @@ module appEnv './app/app-env.bicep' = {
     vaultName: security.outputs.keyVaultName
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     daprEnabled: true
+    vnetName: vnet.outputs.vnetName
+    vnetInernal: vnetInternal 
+  }
+}
+
+var containerAppsSubnet = {
+  name: 'ContainerAppsSubnet'
+  properties: {
+    addressPrefix: '10.0.0.0/23'
+  }
+}
+
+var subnets = [
+  containerAppsSubnet
+]
+
+// Deploy an Azure Virtual Network 
+module vnet 'core/networking/vnet.bicep' = {
+  name: '${deployment().name}--vnet'
+  scope: rg
+  params: {
+    location: location
+    vnetName: vnetName
+    vnetPrefix: vnetPrefix
+    subnets: subnets
   }
 }
 
